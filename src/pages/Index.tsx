@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { WaitlistForm } from "@/components/WaitlistForm";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   return (
@@ -12,6 +12,15 @@ const Index = () => {
 
       {/* Content */}
       <div className="relative container mx-auto px-4 py-20 min-h-screen flex flex-col items-center justify-center text-center">
+        {/* 3D Phone Image */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
+          <img
+            src="/lovable-uploads/8f71ebd3-b825-47d0-a737-4f47b6ee7c29.png"
+            alt="3D Phone"
+            className="w-full max-w-2xl object-contain"
+          />
+        </div>
+
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
           The Future of Gaming is{" "}
           <span className="text-primary">Social</span>
