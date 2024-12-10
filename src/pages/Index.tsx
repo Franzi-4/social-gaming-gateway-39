@@ -24,15 +24,6 @@ const Index = () => {
           </p>
         </div>
 
-        {/* 3D Phone Image - Positioned behind the content */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
-          <img
-            src="/lovable-uploads/8f71ebd3-b825-47d0-a737-4f47b6ee7c29.png"
-            alt="3D Phone"
-            className="w-full max-w-2xl object-contain"
-          />
-        </div>
-
         {/* Call to Action Section */}
         <div className="relative z-10 w-full max-w-md space-y-8">
           <WaitlistForm />
