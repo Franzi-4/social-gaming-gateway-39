@@ -3,20 +3,46 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 export const WaitlistForm = () => {
   const [email, setEmail] = useState("");
   const [newsletter, setNewsletter] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", { email, newsletter });
-    toast({
-      title: "Thanks for joining!",
-      description: "We'll keep you updated on our progress.",
-    });
-    setEmail("");
+    setIsSubmitting(true);
+
+    try {
+      console.log("Submitting to Supabase:", { email, newsletter });
+      
+      const { error } = await supabase
+        .from('waitlist')
+        .insert([
+          { email, newsletter }
+        ]);
+
+      if (error) throw error;
+
+      toast({
+        title: "Thanks for joining!",
+        description: "We'll keep you updated on our progress.",
+      });
+      
+      setEmail("");
+      setNewsletter(true);
+    } catch (error) {
+      console.error("Error submitting to waitlist:", error);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -29,8 +55,13 @@ export const WaitlistForm = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
           className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+          disabled={isSubmitting}
         />
-        <Button type="submit" className="bg-primary hover:bg-primary/80">
+        <Button 
+          type="submit" 
+          className="bg-primary hover:bg-primary/80"
+          disabled={isSubmitting}
+        >
           Join Waitlist
         </Button>
       </div>
@@ -40,6 +71,7 @@ export const WaitlistForm = () => {
           checked={newsletter}
           onCheckedChange={(checked) => setNewsletter(checked as boolean)}
           className="border-white/20 data-[state=checked]:bg-primary"
+          disabled={isSubmitting}
         />
         <label
           htmlFor="newsletter"
