@@ -8,7 +8,7 @@ const Index = () => {
       <div className="container mx-auto px-4 py-12">
         {/* Navigation */}
         <nav className="flex justify-between items-center mb-24">
-          <div className="text-2xl font-bold">Social Gaming Gateway</div>
+          <div className="text-2xl font-bold">Kivo Games</div>
           <Button 
             variant="outline" 
             className="bg-white/10 border-white/20 text-white hover:bg-white/20"
