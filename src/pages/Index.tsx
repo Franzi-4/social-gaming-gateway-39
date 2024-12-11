@@ -22,10 +22,9 @@ const Index = () => {
         <div className="max-w-4xl mx-auto space-y-16">
           <div className="space-y-6 text-center">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Create and Share
-              <br />
+              The Future of Gaming is{" "}
               <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Playable Game Demos
+                Social
               </span>
             </h1>
             <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
@@ -37,24 +36,13 @@ const Index = () => {
           <div className="max-w-md mx-auto">
             <WaitlistForm />
           </div>
-
-          {/* Features Grid */}
-          <div className="grid md:grid-cols-3 gap-8 pt-16">
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Create</h3>
-              <p className="text-white/60">Build and share your game demos directly in the browser</p>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Discover</h3>
-              <p className="text-white/60">Find new games and get inspired by other creators</p>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Collaborate</h3>
-              <p className="text-white/60">Fork existing games and build upon them with the community</p>
-            </div>
-          </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="absolute bottom-0 w-full py-4 text-center text-white/60">
+        <p>© 2024 Styx Ventures UG</p>
+      </footer>
     </div>
   );
 };
