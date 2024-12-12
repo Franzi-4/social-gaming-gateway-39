@@ -16,15 +16,21 @@ export const WaitlistForm = () => {
     setIsSubmitting(true);
 
     try {
-      console.log("Submitting to Supabase:", { email, newsletter });
+      console.log("Starting submission to Supabase:", { email, newsletter });
       
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('waitlist')
         .insert([
           { email, newsletter }
-        ]);
+        ])
+        .select();
 
-      if (error) throw error;
+      console.log("Supabase response:", { data, error });
+
+      if (error) {
+        console.error("Supabase error details:", error);
+        throw error;
+      }
 
       toast({
         title: "Thanks for joining!",
@@ -34,7 +40,7 @@ export const WaitlistForm = () => {
       setEmail("");
       setNewsletter(true);
     } catch (error) {
-      console.error("Error submitting to waitlist:", error);
+      console.error("Detailed error when submitting to waitlist:", error);
       toast({
         title: "Something went wrong",
         description: "Please try again later.",
